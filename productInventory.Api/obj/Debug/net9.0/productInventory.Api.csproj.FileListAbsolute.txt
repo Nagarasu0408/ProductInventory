@@ -26,3 +26,4 @@ C:\WNS\Workspace\ProductInventory\productInventory.Api\obj\Debug\net9.0\refint\p
 C:\WNS\Workspace\ProductInventory\productInventory.Api\obj\Debug\net9.0\productInventory.Api.pdb
 C:\WNS\Workspace\ProductInventory\productInventory.Api\obj\Debug\net9.0\productInventory.Api.genruntimeconfig.cache
 C:\WNS\Workspace\ProductInventory\productInventory.Api\obj\Debug\net9.0\ref\productInventory.Api.dll
+c:\WNS\Workspace\ProductInventory\productInventory.Api\obj\Debug\net9.0\productInventory.Api.sourcelink.json

@@ -108,3 +108,4 @@ C:\WNS\Workspace\ProductInventory\productInventory.Tests\obj\Debug\net9.0\refint
 C:\WNS\Workspace\ProductInventory\productInventory.Tests\obj\Debug\net9.0\productInventory.Tests.pdb
 C:\WNS\Workspace\ProductInventory\productInventory.Tests\obj\Debug\net9.0\productInventory.Tests.genruntimeconfig.cache
 C:\WNS\Workspace\ProductInventory\productInventory.Tests\obj\Debug\net9.0\ref\productInventory.Tests.dll
+c:\WNS\Workspace\ProductInventory\productInventory.Tests\obj\Debug\net9.0\productInventory.Tests.sourcelink.json
