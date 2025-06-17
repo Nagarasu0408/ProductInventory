@@ -25,11 +25,6 @@ public class ProductController : ControllerBase
         return Ok(newProduct);
     }
 
-
-
-
-
-
     [HttpGet("{id}")] //Get the Produt by 'Id'
     // http://localhost:50345/Product/1
     public ActionResult GetProducts(string id)
@@ -38,14 +33,15 @@ public class ProductController : ControllerBase
         return Ok(product);
     }
 
+[HttpGet]
+    public ActionResult GetAllProducts()
+    {
+        var product = _productService.GetAllProducts();
+        return Ok(product);
+    }
 
-
-
-
-
-    [HttpGet] //Update the product Details
-
-    public ActionResult UpdateProduct([FromBody] Products products, string id)
+    [HttpPut("{id}")] //Update the product Details
+    public ActionResult UpdateProduct(string id,[FromBody] Products products)
     {
         Products product1 = _productService.UpdateProduct(id, products);
         return Ok(product1);
@@ -56,8 +52,8 @@ public class ProductController : ControllerBase
     // http://localhost:50345/Product/1
     public ActionResult DeleteProduct(string id)
     {
-        Products product = _productService.GetProduct(id);
-        return Ok(product);
+        _productService.DeleteProduct(id);
+        return NoContent();
     }
 
 }

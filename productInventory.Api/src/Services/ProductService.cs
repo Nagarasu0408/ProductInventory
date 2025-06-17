@@ -51,21 +51,16 @@ public class ProductService : IproductService
         if (dbProduct == null)
         {
             // throw new ResourceNotFoundException();
-            throw new Exception();
+            throw new Exception("Not found");
         }
         if (products.Name != "")
         {
             dbProduct.Name = products.Name;
         }
 
-        Products updatedProduct = _ProductRepositor.Save(dbProduct);
-        _ProductRepositor.Save(updatedProduct);
+        Products updatedProduct = _ProductRepositor.UpdateProduct(id,dbProduct);
+        // _ProductRepositor.UpdateProduct(updatedProduct);
 
         return updatedProduct;
-    }
-
-    public Products UpdateProduct(Products products)
-    {
-        throw new NotImplementedException();
     }
 }

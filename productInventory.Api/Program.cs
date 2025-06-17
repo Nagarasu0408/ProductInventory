@@ -32,3 +32,27 @@ app.MapControllers();
 
 
 app.Run();
+
+
+
+
+
+
+
+
+
+
+/*
+
+What is ORM?
+
+The full form of ORM framework is Object-Relational Mapping. 
+It's a programming technique that simplifies the interaction 
+between object-oriented programming languages and relational databases.
+ORM tools automate the process of translating objects in an OOP language 
+into tables in a relational database, reducing the need for manual SQL queries
+
+
+
+
+*/

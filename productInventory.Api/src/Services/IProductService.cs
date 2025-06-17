@@ -12,6 +12,5 @@ public interface IproductService
 
     public void DeleteProduct(string id);
 
-    public Products UpdateProduct(Products products);
-    Products UpdateProduct(string id, Products products);
+    public Products UpdateProduct(string id,Products products);
 }
