@@ -14,5 +14,5 @@ public interface IProductRepository
 
     public Products UpdateProduct(Products product);
 
-    public Products RemoveProduct(string id);
+    public void RemoveProduct(string id);
 }

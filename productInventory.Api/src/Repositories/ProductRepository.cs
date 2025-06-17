@@ -14,28 +14,32 @@ public class ProductRepository : IProductRepository
     }
     public Products Get(string id)
     {
-        throw new NotImplementedException();
+        
         var product = ListOfProduct.Find(e => e.Id == id);
         return product;
     }
 
     public List<Products> GetAll()
     {
-        throw new NotImplementedException();
+        return ListOfProduct;
     }
 
-    public Products RemoveProduct(string id)
+    public void RemoveProduct(string id)
     {
-        throw new NotImplementedException();
+        var product = ListOfProduct.Find(e => e.Id == id);
+        ListOfProduct.Remove(product);
+
     }
 
     public Products Save(Products product)
     {
-        throw new NotImplementedException();
+        ListOfProduct.Add(product);
+        return product;
     }
 
     public Products UpdateProduct(Products product)
     {
-        throw new NotImplementedException();
+        ListOfProduct.Add(product);
+        return product;
     }
 }

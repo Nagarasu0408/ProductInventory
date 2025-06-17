@@ -6,19 +6,15 @@ using ProductInventory.Api.Services;
 namespace ProductInventory.Api.Controllers;
 
 [ApiController]
-[Route("[api/controller]")]
+[Route("api/[controller]")]
 public class ProductController : ControllerBase
 {
-    private IproductService _productService; //Create a Variable for the Product Services Interface
+    private readonly IproductService _productService; //Create a Variable for the Product Services Interface
 
 
     public ProductController(IproductService productServices)
     {
         _productService = productServices;    //Create a productServices variable without creating Object
-    }
-
-    public ProductController()
-    {
     }
 
     [HttpPost]   // Create a product Usigng HttpPost Anotation
