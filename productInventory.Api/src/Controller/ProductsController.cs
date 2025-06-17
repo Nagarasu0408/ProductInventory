@@ -20,7 +20,7 @@ public class ProductController : ControllerBase
     [HttpPost]   // Create a product Usigng HttpPost Anotation
     public ActionResult CreateProduct([FromBody] Products products)
     {
-        ArgumentNullException.ThrowIfNull(products);
+        // ArgumentNullException.ThrowIfNull(products);
         Products newProduct = _productService.AddProduct(products);
         return Ok(newProduct);
     }
@@ -43,7 +43,7 @@ public class ProductController : ControllerBase
 
 
 
-    [HttpGet("{id}")] //Update the product Details
+    [HttpGet] //Update the product Details
 
     public ActionResult UpdateProduct([FromBody] Products products, string id)
     {

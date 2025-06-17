@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using ProductInventory.Api.Data;
 using ProductInventory.Api.Repositories;
 using ProductInventory.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+// Connect DataBase
+builder.Services.AddDbContext<ApplicationDbContext>(
+    Options=>Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
