@@ -1,6 +1,8 @@
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ProductInventory.Api.Data;
+using ProductInventory.Api.Mappings;
 using ProductInventory.Api.Repositories;
 using ProductInventory.Api.Services;
 
@@ -15,6 +17,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
+// builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+
+
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<IproductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();

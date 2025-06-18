@@ -1,4 +1,7 @@
 using System.ComponentModel.Design;
+using AutoMapper;
+using ProductInventory.Api.Data;
+using ProductInventory.Api.Data.DTOs;
 using ProductInventory.Api.Models.Products;
 using ProductInventory.Api.Repositories;
 using ProductInventory.Api.Services;
@@ -10,57 +13,83 @@ public class ProductService : IproductService
 
 {
 
-    private IProductRepository _ProductRepositor;
+    private IProductRepository _ProductRepository;
 
-    public ProductService(IProductRepository productRepository)
+     private readonly IMapper _mapper; //Mapper Object
+
+    public ProductService(IProductRepository productRepository,IMapper mapper)
     {
-        _ProductRepositor = productRepository;
+        _ProductRepository = productRepository;
+        _mapper = mapper;
     }
 
-    public Products AddProduct(Products products)
+    // public Products AddProduct(Products products)
+    // {
+    //     return _ProductRepositor.Save(products);
+    // }
+
+    // public List<Products> GetAllProducts()
+    // {
+    //     return _ProductRepositor.GetAll();
+    // }
+
+
+    // public Products GetProduct(string id)
+    // {
+    //     return _ProductRepositor.Get(id);
+    // }
+
+      public async Task<ProductDto> CreateProduct(CreateProductRequest createProduct)
     {
-        return _ProductRepositor.Save(products);
+        var product = _mapper.Map<Products>(createProduct);
+        await _ProductRepository.AddAsync(product);
+        var productDto = _mapper.Map<ProductDto>(product);
+        return productDto;
     }
 
-    public void DeleteProduct(string id)
+    public async Task<IEnumerable<ProductDto>> GetAll()
     {
-        Products products = _ProductRepositor.Get(id);
-
-        if (products == null)
-        {
-            // throw new RespurceNotFound();
-            throw new Exception();
-        }
-        _ProductRepositor.RemoveProduct(id);
-    }
-    public List<Products> GetAllProducts()
-    {
-        return _ProductRepositor.GetAll();
+        var products = await _ProductRepository.GetProductsAsync();
+        var productDtos = _mapper.Map<IEnumerable<ProductDto>>(products);
+        return productDtos;
     }
 
-    public Products GetProduct(string id)
+    public async Task<ProductDto> GetById(Guid id)
     {
-        return _ProductRepositor.Get(id);   
+        var product = await _ProductRepository.GetByIdAsync(id);
+        var productDto = _mapper.Map<ProductDto>(product);
+        return productDto;
     }
 
+//  public void DeleteProduct(string id)
+//     {
+//         Products products = _ProductRepository.Get(id);
+
+//         if (products == null)
+//         {
+//             // throw new RespurceNotFound();
+//             throw new Exception();
+//         }
+//         _ProductRepository.RemoveProduct(id);
+//     }
 
 
-    public Products UpdateProduct(string id, Products products)
-    {
-        Products dbProduct = _ProductRepositor.Get(id);
-        if (dbProduct == null)
-        {
-            // throw new ResourceNotFoundException();
-            throw new Exception("Not found");
-        }
-        if (products.Name != "")
-        {
-            dbProduct.Name = products.Name;
-        }
+    // public Products UpdateProduct(string id, Products products)
+    // {
+    //     Products dbProduct = _ProductRepository.Get(id);
+    //     if (dbProduct == null)
+    //     {
+    //         // throw new ResourceNotFoundException();
+    //         throw new Exception("Not found");
+    //     }
+    //     if (products.Name != "")
+    //     {
+    //         dbProduct.Name = products.Name;
+    //     }
 
-        Products updatedProduct = _ProductRepositor.UpdateProduct(id,dbProduct);
-        // _ProductRepositor.UpdateProduct(updatedProduct);
+    //     Products updatedProduct = _ProductRepository.UpdateProduct(id,dbProduct);
+    //     // _ProductRepositor.UpdateProduct(updatedProduct);
 
-        return updatedProduct;
-    }
+    //     return updatedProduct;
+    // }
 }
