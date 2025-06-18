@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProductInventory.Api.Data;
 using ProductInventory.Api.Data.DTOs;
 using ProductInventory.Api.Models.Products;
+using ProductInventory.Api.Models.Requests;
 using ProductInventory.Api.Models.Responses;
 using ProductInventory.Api.Services;
 
@@ -58,6 +59,34 @@ public class ProductController : ControllerBase
         }
         return Ok(new ApiResponse<ProductDto>(true, "Product Fetch Successfully", result));
     }
+
+
+
+    //Update Product
+[HttpPut("{id}")]
+    public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] UpdateProductRequest request)
+    {
+        var result = await _productService.UpdateProduct(id, request);
+        if (result == null)
+        {
+            return NotFound(new ApiResponse<ProductDto>(false, "Product Not Found", null));
+        }
+        return Ok(new ApiResponse<ProductDto>(true, "Product Updated Successfully", result));
+    }
+
+    // Delete a Product
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteProduct(Guid id)
+    {
+        var result = await _productService.DeleteProductAsync(id);
+        if (!result)
+        {
+            return NotFound(new ApiResponse<bool>(false, "Product Not Found", false));
+        }
+        return Ok(new ApiResponse<bool>(true, "Product Deleted Successfully", true));
+    }
+
+
 
     /*
                     [HttpGet]

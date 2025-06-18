@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using ProductInventory.Api.Data;
 using ProductInventory.Api.Data.DTOs;
 using ProductInventory.Api.Models.Products;
+using ProductInventory.Api.Models.Requests;
 
 public interface IproductService
 {
@@ -17,6 +18,8 @@ public interface IproductService
     Task<ProductDto> CreateProduct(CreateProductRequest createProduct);
     Task<IEnumerable<ProductDto>> GetAll();
     Task<ProductDto> GetById(Guid id);
+     Task<ProductDto> UpdateProduct(Guid id, UpdateProductRequest request);
+    Task<bool> DeleteProductAsync(Guid id);
 
 
     // Task<ProductDto> UpdateProduct(Guid id, UpdateProductRequest request);
